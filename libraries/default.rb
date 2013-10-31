@@ -66,9 +66,9 @@ end
 def get_mon_addresses()
   mon_ips = []
 
-  if File.exists?("/var/run/ceph/ceph-mon.#{node['hostname']}.asok")
-    mon_ips = get_quorum_members_ips()
-  else
+#  if File.exists?("/var/run/ceph/ceph-mon.#{node['hostname']}.asok")
+#    mon_ips = get_quorum_members_ips()
+#  else
     mons = []
     # make sure if this node runs ceph-mon, it's always included even if
     # search is laggy; put it first in the hopes that clients will talk
@@ -87,7 +87,7 @@ def get_mon_addresses()
         mon_ips = mons.map { |node| node['ipaddress'] + ":6789" }
       end
     end
-  end
+#  end
   return mon_ips.uniq
 end
 
